@@ -1,2 +1,2 @@
 # SpiritIsland
-I board game like no other
+A board game like no other
