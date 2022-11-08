@@ -1,5 +1,7 @@
 package src;
 import java.util.*;
+
+import src.Invaders.Invader;
 public class Area {
     private ArrayList<Invader> invaderList = new ArrayList<Invader>();
     private String type;
