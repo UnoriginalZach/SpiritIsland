@@ -16,4 +16,8 @@ public class Native {
     public int getShieldPoints() {
         return this.shieldPoints;
     }
+
+    public void damageTaken(int damage) {
+        this.lifePoints -= damage;
+    }
 }

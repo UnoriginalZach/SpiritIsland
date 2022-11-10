@@ -14,7 +14,6 @@ public class Area {
     private int blightLevel;
     private boolean protection;
     private int shieldPoints;
-    // generate list to store invader types on area
     // generate method that calculates invader damage
     public void setIsNativesPresent() {
         if(nativeList.size() > 0) {
