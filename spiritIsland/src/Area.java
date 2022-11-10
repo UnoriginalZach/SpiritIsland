@@ -2,20 +2,42 @@ package src;
 import java.util.*;
 import java.lang.*;
 
+import src.Invaders.Explorer;
 import src.Invaders.Invader;
 public class Area {
     private ArrayList<Invader> invaderList = new ArrayList<Invader>();
-    private ArrayList<Native> nativeList = new ArrayList<Native>();
+    private ArrayList<Dahan> dahanList = new ArrayList<Dahan>();
     private String type;
     private int number;
     private int presence;
     private boolean holySite;
-    private int blightLevel;
+    private int blightLevel = 0;
     private boolean protection;
     private int shieldPoints;
-    // generate method that calculates invader damage
-    public boolean isNativesPresent() {
-        if(nativeList.size() > 0) {
+   
+    public Area(String type, int number, int presence) {
+        this.type = type;
+        this.number = number;
+        this.presence = presence;
+    }
+    public Area(String type, int number, int presence, int numOfInvaders, int numOfdahans) {
+        this.type = type;
+        this.number = number;
+        this.presence = presence;
+        for(int i = 0; i < numOfInvaders; i++) {
+            Explorer explorer = new  Explorer();
+            invaderList.add(explorer);
+        }
+        for( int i = 0; i < numOfdahans; i++) {
+            Dahan dahan = new Dahan();
+            dahanList.add(dahan);
+        }
+    }
+
+
+
+    public boolean isdahansPresent() {
+        if(dahanList.size() > 0) {
             return true;
         }
         else {
@@ -32,12 +54,12 @@ public class Area {
         }
     }
     
-    public ArrayList<Native> getNativeList() {
-        return this.nativeList;
+    public ArrayList<Dahan> getdahanList() {
+        return this.dahanList;
     }
 
-    public void setNativeList(ArrayList<Native> nativeList) {
-        this.nativeList = nativeList;
+    public void setdahanList(ArrayList<Dahan> dahanList) {
+        this.dahanList = dahanList;
     }
 
     public int getPresence() {
@@ -81,12 +103,12 @@ public class Area {
         return totalPower;
     }
 
-    public int getTotalNativePower() {
+    public int getTotaldahanPower() {
         int totalPower = 0;
-        for(int i = 0; i < nativeList.size(); i++) {
-            if(nativeList.size() != 0) {
-                Native currentNative = nativeList.get(i);
-                totalPower += currentNative.getAttackPower();
+        for(int i = 0; i < dahanList.size(); i++) {
+            if(dahanList.size() != 0) {
+                Dahan currentdahan = dahanList.get(i);
+                totalPower += currentdahan.getAttackPower();
             }
             
         }
@@ -138,14 +160,14 @@ public class Area {
     public void invaderAttackPhase() {
         int j = 0;
         if(isIndaversPresent()) {
-            if(isNativesPresent()) {
+            if(isdahansPresent()) {
                 for(int i = 0; i < invaderList.size(); i ++) {
                    int currentPower = invaderList.get(i).getAttackPower();
-                   while(currentPower > 0 && j < nativeList.size()) {
-                        int currentLifePoints = nativeList.get(j).getLifePoints();
+                   while(currentPower > 0 && j < dahanList.size()) {
+                        int currentLifePoints = dahanList.get(j).getLifePoints();
                         if(currentLifePoints <= currentPower) {
                             currentPower -= currentLifePoints;
-                            nativeList.remove(j);
+                            dahanList.remove(j);
                             j++;
                             } 
                         else { 
