@@ -8,29 +8,27 @@ public class Area {
     private ArrayList<Native> nativeList = new ArrayList<Native>();
     private String type;
     private int number;
-    private boolean isNativesPresent;
-    private boolean isInvadersPresent;
     private int presence;
-    private boolean holySite = false;
+    private boolean holySite;
     private int blightLevel;
     private boolean protection;
     private int shieldPoints;
     // generate method that calculates invader damage
-    public void setIsNativesPresent() {
+    public boolean isNativesPresent() {
         if(nativeList.size() > 0) {
-            this.isNativesPresent = true;
+            return true;
+        }
+        else {
+            return false;
         }
     }
-    public boolean getIsNativesPresent() {
-        return this.isNativesPresent;
-    }
-    public boolean getIsInvadersPresent() {
-        return this.isInvadersPresent;
-    }
 
-    public void setIsIndaversPresent() {
+    public boolean isIndaversPresent() {
         if(invaderList.size() > 0) {
-            this.isInvadersPresent = true;
+            return true;
+        }
+        else {
+            return false;
         }
     }
     
@@ -139,8 +137,8 @@ public class Area {
     }
     public void invaderAttackPhase() {
         int j = 0;
-        if(isInvadersPresent) {
-            if(isNativesPresent) {
+        if(isIndaversPresent()) {
+            if(isNativesPresent()) {
                 for(int i = 0; i < invaderList.size(); i ++) {
                    int currentPower = invaderList.get(i).getAttackPower();
                    while(currentPower > 0 && j < nativeList.size()) {
