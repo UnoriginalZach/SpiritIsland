@@ -7,7 +7,7 @@ public class Native {
     public int getLifePoints() {
         return this.lifePoints;
     }
-    public int getAttackPoints() {
+    public int getAttackPower() {
         return this.attackPoints;
     }
     public void setShieldPoints(int shieldPoints) {

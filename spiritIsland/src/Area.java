@@ -1,5 +1,6 @@
 package src;
 import java.util.*;
+import java.lang.*;
 
 import src.Invaders.Invader;
 public class Area {
@@ -70,6 +71,29 @@ public class Area {
         }
         return null;
     }
+    public int getTotalInvaderPower() {
+        int totalPower = 0;
+        for(int i = 0; i < invaderList.size(); i++) {
+            if(invaderList.size() != 0) {
+                Invader currentInvader = invaderList.get(i);
+                totalPower += currentInvader.getAttackPower();
+            }
+            
+        }
+        return totalPower;
+    }
+
+    public int getTotalNativePower() {
+        int totalPower = 0;
+        for(int i = 0; i < nativeList.size(); i++) {
+            if(nativeList.size() != 0) {
+                Native currentNative = nativeList.get(i);
+                totalPower += currentNative.getAttackPower();
+            }
+            
+        }
+        return totalPower;
+    }
 
     public void addInvader(Invader invader) {
         this.invaderList.add(invader);
@@ -113,9 +137,30 @@ public class Area {
     public void setBlightLevel(int blightLevel) {
         this.blightLevel = blightLevel;
     }
-    public void attackPhase(int addedSpiritPower) {
-        
+    public void invaderAttackPhase() {
+        int j = 0;
+        if(isInvadersPresent) {
+            if(isNativesPresent) {
+                for(int i = 0; i < invaderList.size(); i ++) {
+                   int currentPower = invaderList.get(i).getAttackPower();
+                   while(currentPower > 0 && j < nativeList.size()) {
+                        int currentLifePoints = nativeList.get(j).getLifePoints();
+                        if(currentLifePoints <= currentPower) {
+                            currentPower -= currentLifePoints;
+                            nativeList.remove(j);
+                            j++;
+                            } 
+                        else { 
+                            currentLifePoints -= currentPower;
+                            }
+                        }
+                   }
+                }
+            if(getTotalInvaderPower() - getShieldPoints() > 2 && !protection) {
+                this.blightLevel += 1;
+                }
+
+            }
         }
-        
 
 }
