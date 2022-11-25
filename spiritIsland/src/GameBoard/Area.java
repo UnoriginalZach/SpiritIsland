@@ -45,7 +45,7 @@ public class Area {
         }
     }
 
-    public boolean isIndaversPresent() {
+    public boolean isInvadersPresent() {
         if(invaderList.size() > 0) {
             return true;
         }
@@ -154,7 +154,7 @@ public class Area {
     }
     public void invaderAttackPhase() {
         int j = 0;
-        if(isIndaversPresent()) {
+        if(isInvadersPresent()) {
             if(isdahansPresent()) {
                 for(int i = 0; i < invaderList.size(); i ++) {
                    int currentPower = invaderList.get(i).getAttackPower();
@@ -177,16 +177,36 @@ public class Area {
 
             }
         }
-        public void DahanAttackPhase(int invaderTarget, int spiritPower) {
-            if(isdahansPresent()) {
-                int totalPower = getTotalDahanPower() + spiritPower;
+        public void playerAttackPhase(int invaderTarget, int spiritPower) {
+                int totalPower = spiritPower;
                 if(invaderList.get(invaderTarget).getLifePoints() < totalPower) {
                     invaderList.remove(invaderTarget);
                 } else {
                     invaderList.get(invaderTarget).damageTaken(totalPower);
                 }
             
-        }
+        
     }
-
+    public void dahanAttackPhase() {
+        int j = 0;
+        if(isdahansPresent()) {
+            if(isInvadersPresent()) {
+                for(int i = 0; i < dahanList.size(); i ++) {
+                   int currentPower = dahanList.get(i).getAttackPower();
+                   while(currentPower > 0 && j < invaderList.size()) {
+                        int currentLifePoints = invaderList.get(j).getLifePoints();
+                        if(currentLifePoints <= currentPower) {
+                            currentPower -= currentLifePoints;
+                            invaderList.remove(j);
+                            j++;
+                            } 
+                        else { 
+                            currentLifePoints -= currentPower;
+                            }
+                        }
+                   }
+                }
+            }
+    }
 }
+

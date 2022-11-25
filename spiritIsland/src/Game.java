@@ -29,33 +29,33 @@ public class Game {
         playerList.add(player3);
         playerList.add(player4);
     } 
-    public void getPlayersTarget(Area area, Scanner scanner) {
-        if(area.isIndaversPresent()) {
-            boolean isAttackOver = false;
-            System.out.println("you are attacking Invaders in: "+ area.getType()+" number:"+area.getNumber());
-            System.out.println("There are "+area.getTotalInvaders()+" invaders, and "+area.getTotalDahan()+" Dahan.");
-            
-            while(!isAttackOver && area.isIndaversPresent()) {
-                System.out.println("the invaders present:");
-                for(int i = 0; i < area.getTotalInvaders(); i++ ) {
-                    System.out.println((i + 1) +" " + area.getInvader(i)+" with "+ area.getInvader(i).getLifePoints()+" life points");
-                }
-                System.out.print("select the invader you would like to attack:");
-                int target = scanner.nextInt() - 1;
-                System.out.print("how much power would you like to use:");
-                int spiritPower = scanner.nextInt();
-                area.DahanAttackPhase(target, spiritPower);
-                System.out.print("would you like to continue attacking in this area?");
-                if(scanner.nextLine().toLowerCase().equals("no")) {
-                    isAttackOver = true;
-                }
-            } 
+    public int getTarget(Area area, Scanner scanner) {
+        if(area.isInvadersPresent()) {
+            System.out.println("you are attacking Invaders in: "+ area.getType()+ " number:"+ area.getNumber());
+            System.out.println("There are "+area.getTotalInvaders()+" invaders");
+            for(int i = 0; i < area.getTotalInvaders(); i++ ) {
+                System.out.println((i + 1) +" " + area.getInvader(i)+" with "+ area.getInvader(i).getLifePoints()+" life points");
+            }
+            System.out.print("select the invader you would like to attack:");
+                return scanner.nextInt() - 1;
         }
+        else {return -1;}
     }
+
+    
     public void playersAttackPhase() {
         Scanner scanner = new Scanner(System.in);
-        getPlayersTarget(null, scanner);
+        getTarget(null, scanner);
         
         scanner.close();
+    }
+    public void round () {
+        // Spirit phase
+        // card commit
+        // fast attack
+        // invaders attack
+        // slow attacks
+        // time passes
+
     }
 }
