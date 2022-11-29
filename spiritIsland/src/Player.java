@@ -55,6 +55,12 @@ public class Player {
     public void DiscardCard (Card card) {
         discard.add(card);
     }
+    public void playCard(Card card) {
+        if(hand.contains(card)) {
+            cardsPlayed.add(card);
+        }
+    }
+    
     public void getTotalElementsPlayed(ArrayList<Card> cardsPlayed) {
         int totalWater = 0;
         int totalFire = 0;
