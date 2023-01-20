@@ -1,10 +1,12 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import src.GameBoard.Area;
 import src.GameBoard.Board;
+import src.errors.InvalidPlayerCountException;
 
 public class Game {
     private Board board;
@@ -28,12 +30,24 @@ public class Game {
         playerList.add(player2);
         playerList.add(player3);
         playerList.add(player4);
-    } 
+    }
+
+    public Game(Board board, Player ...players) throws InvalidPlayerCountException {
+        this.board = board;
+        if (players.length > 4) {
+            // throw error [recommended]
+            // OR
+            // playerList.addAll(Arrays.copyRange(players, 0, 4))
+            throw new InvalidPlayerCountException(players.length);
+        }
+        playerList.addAll(List.of(players));
+    }
+
     public int getTarget(Area area, Scanner scanner) {
         if(area.isInvadersPresent()) {
             System.out.println("you are attacking Invaders in: "+ area.getType()+ " number:"+ area.getNumber());
             System.out.println("There are "+area.getTotalInvaders()+" invaders");
-            for(int i = 0; i < area.getTotalInvaders(); i++ ) {
+            for(var i = 0; i < area.getTotalInvaders(); i++ ) {
                 System.out.println((i + 1) +" " + area.getInvader(i)+" with "+ area.getInvader(i).getLifePoints()+" life points");
             }
             System.out.print("select the invader you would like to attack:");
@@ -44,7 +58,7 @@ public class Game {
 
     
     public void playersAttackPhase() {
-        Scanner scanner = new Scanner(System.in);
+        var scanner = new Scanner(System.in);
         getTarget(null, scanner);
         
         scanner.close();
