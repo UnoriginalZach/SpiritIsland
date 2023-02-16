@@ -35,13 +35,13 @@ public class Player {
         this.spirit = spirit;
     }
     public void getHand() {
-        for(int i = 0; i < hand.size() -1; i ++) {
-            System.out.println(hand.get(i));
+        for(Card card: this.hand) {
+            System.out.println(card);
         }
     }
     public void getDiscard() {
-        for(int i = 0; i < discard.size() -1; i ++) {
-            System.out.println(discard.get(i));
+        for(Card card: this.discard) {
+            System.out.println(card);
         }
     }
     public void getElements() {
