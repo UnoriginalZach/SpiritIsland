@@ -34,7 +34,7 @@ public class Game {
 
     public Game(Board board, Player ...players) throws InvalidPlayerCountException {
         this.board = board;
-        if (players.length > 4) {
+        if (players.length > 4 || players.length < 2) {
             // throw error [recommended]
             // OR
             // playerList.addAll(Arrays.copyRange(players, 0, 4))
@@ -56,7 +56,16 @@ public class Game {
         else {return -1;}
     }
 
-    
+    public void blightCascade(Area area) {
+        ArrayList<Area>areaOptions = board.adjacentAreas(area);
+        for(Area i : areaOptions) {
+            areaOptions.add(i);
+
+        }
+        
+        
+    }
+
     public void playersAttackPhase() {
         var scanner = new Scanner(System.in);
         getTarget(null, scanner);

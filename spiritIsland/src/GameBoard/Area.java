@@ -36,7 +36,7 @@ public class Area {
 
 
 
-    public boolean isdahansPresent() {
+    public boolean isDahansPresent() {
         if(dahanList.size() > 0) {
             return true;
         }
@@ -54,11 +54,11 @@ public class Area {
         }
     }
     
-    public ArrayList<Dahan> getdahanList() {
+    public ArrayList<Dahan> getDahanList() {
         return this.dahanList;
     }
 
-    public void setdahanList(ArrayList<Dahan> dahanList) {
+    public void setDahanList(ArrayList<Dahan> dahanList) {
         this.dahanList = dahanList;
     }
 
@@ -153,9 +153,9 @@ public class Area {
         this.blightLevel = blightLevel;
     }
     public void invaderAttackPhase() {
-        int j = 0;
         if(isInvadersPresent()) {
-            if(isdahansPresent()) {
+            if(isDahansPresent()) {
+                int j = 0;
                 for(int i = 0; i < invaderList.size(); i ++) {
                    int currentPower = invaderList.get(i).getAttackPower();
                    while(currentPower > 0 && j < dahanList.size()) {
@@ -167,12 +167,14 @@ public class Area {
                             } 
                         else { 
                             currentLifePoints -= currentPower;
+                            
                             }
                         }
                    }
                 }
             if(getTotalInvaderPower() - getShieldPoints() > 2 && !protection) {
                 this.blightLevel += 1;
+                // board method 
                 }
 
             }
@@ -189,7 +191,7 @@ public class Area {
     }
     public void dahanAttackPhase() {
         int j = 0;
-        if(isdahansPresent()) {
+        if(isDahansPresent()) {
             if(isInvadersPresent()) {
                 for(int i = 0; i < dahanList.size(); i ++) {
                    int currentPower = dahanList.get(i).getAttackPower();
