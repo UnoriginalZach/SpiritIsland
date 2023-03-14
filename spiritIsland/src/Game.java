@@ -58,8 +58,8 @@ public class Game {
 
     public void blightCascade(Area area) {
         ArrayList<Area>areaOptions = board.adjacentAreas(area);
-        for(Area i : areaOptions) {
-            areaOptions.add(i);
+        for(Area areas : areaOptions) {
+            areaOptions.add(areas);
 
         }
         
